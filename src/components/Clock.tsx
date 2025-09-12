@@ -11,5 +11,14 @@ export default function Clock() {
     return () => clearInterval(timer);
   }, []);
 
-  return <div>{time.toLocaleTimeString()}</div>;
+  return (
+    <div className="text-center">
+      <div className="text-4xl font-bold text-white mb-2">
+        {time.toLocaleTimeString()}
+      </div>
+      <div className="text-sm text-green-400">
+        New York Time
+      </div>
+    </div>
+  );
 }

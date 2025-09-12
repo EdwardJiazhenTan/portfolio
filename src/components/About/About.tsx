@@ -1,47 +1,61 @@
+import { useState } from 'react';
 import Socials from "./Socials.tsx";
+import MeetingPopup from "../MeetingPopup";
 import { FaGithub, FaLinkedin, FaSpotify, FaInstagram } from "react-icons/fa";
 
 export default function About() {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
   const socialLinks = [
     {
       icon: <FaGithub />,
-      color: "#333333",
+      color: "#22c55e",
       url: "https://github.com/EdwardJiazhenTan",
     },
     {
       icon: <FaLinkedin />,
-      color: "#0077b5",
+      color: "#22c55e",
       url: "https://www.linkedin.com/in/edward-j-tan/",
     },
-    { icon: <FaSpotify />, color: "#1db954" },
-    { icon: <FaInstagram />, color: "#e4405f" },
-    { content: "Contact", color: "#6366f1" },
+    { icon: <FaSpotify />, color: "#22c55e" },
+    { icon: <FaInstagram />, color: "#22c55e" },
+    { 
+      content: "Contact", 
+      color: "#22c55e",
+      onClick: () => setIsPopupOpen(true)
+    },
   ];
 
   return (
-    <div>
-      <h1>Welcome</h1>
+    <div className="space-y-6">
+      <h1 className="text-4xl font-bold text-white mb-6">Welcome</h1>
 
-      <p>
+      <p className="text-xl text-white/90 leading-relaxed">
         Hi, I am Edward Tan, software developer focusing on full stack
         development.
       </p>
 
-      <p>
-        I graduated from University of Rochester in May 2025 and I'm actively
-        looking for oppportunities.
+      <p className="text-xl text-white/90 leading-relaxed">
+        I graduated from University of Rochester in May 2025 and I'm <span className="text-green-400 animate-pulse font-semibold">actively
+        looking for opportunities</span>.
       </p>
 
-      <div className="flex gap-4 mt-6">
+      <div className="flex gap-4 mt-8">
         {socialLinks.map((social, index) => (
           <Socials
             key={index}
             content={social.icon || social.content}
             color={social.color}
             url={social.url}
+            onClick={social.onClick}
           />
         ))}
       </div>
+
+      <MeetingPopup 
+        isOpen={isPopupOpen} 
+        onClose={() => setIsPopupOpen(false)} 
+      />
     </div>
   );
 }
