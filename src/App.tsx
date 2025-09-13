@@ -10,7 +10,6 @@ export default function App() {
           <h1>Element 1</h1>
         </Card>
 
-
         <Card className="col-span-3 row-span-2 gap-4 h-full">
           <h1> Element 2</h1>
         </Card>
